@@ -1,0 +1,13 @@
+fragment RegularMessage on Message {
+  id
+  isFromSender
+  text
+  createdAt
+  headerId
+  creator {
+    id
+    name
+    photoUrl
+    createdAt
+  }
+}

@@ -1,0 +1,17 @@
+fragment RegularHeaders on Header {
+  id
+  toId
+  subject
+  listingId
+  reservationId
+  createdAt
+  creator {
+    id
+    name
+    photoUrl
+    createdAt
+  }
+  messages {
+    ...RegularMessage
+  }
+}
