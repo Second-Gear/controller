@@ -11,7 +11,7 @@ export default {
   input: 'src/index.ts',
   output: [
     {
-      dir: 'dist',
+      dir: 'lib',
       format: 'esm',
       exports: 'named',
       preserveModules: true,
@@ -30,7 +30,6 @@ export default {
     graphql(),
     typescript({
       clean: true,
-      useTsconfigDeclarationDir: true,
     }),
   ],
 };

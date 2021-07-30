@@ -4,9 +4,9 @@
   "private": false,
   "author": "Sebastian Darie",
   "description": "Package used for sharing code between app and web in my airbnb monorepo",
-  "main": "dist/index.js",
-  "module": "dist/index.esm.js",
-  "types": "dist/src/index.d.ts",
+  "main": "lib/index.js",
+  "module": "lib/index.esm.js",
+  "types": "lib/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/second-gear/controller.git"
@@ -17,7 +17,7 @@
   },
   "homepage": "https://github.com/second-gear/controller#readme",
   "scripts": {
-    "build": "rm -rf dist && rollup -c rollup.config.ts",
+    "build": "rimraf lib && rollup -c rollup.config.ts",
     "gen": "graphql-codegen --config codegen.yml"
   },
   "peerDependencies": {
@@ -42,6 +42,7 @@
     "graphql": "^15.5.1",
     "graphql-tag": "^2.12.5",
     "react": "^17.0.2",
+    "rimraf": "^3.0.2",
     "rollup": "^2.55.1",
     "rollup-plugin-filesize": "^9.1.1",
     "rollup-plugin-peer-deps-external": "^2.2.4",
@@ -50,7 +51,7 @@
     "typescript": "^4.2.4"
   },
   "files": [
-    "/dist"
+    "/lib"
   ],
   "sideEffects": false,
   "publishConfig": {
