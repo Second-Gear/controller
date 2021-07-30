@@ -1,6 +1,6 @@
 {
   "name": "@second-gear/controller",
-  "version": "1.2.3",
+  "version": "1.2.4",
   "private": false,
   "author": "Sebastian Darie",
   "description": "Package used for sharing code between app and web in my airbnb monorepo",
@@ -9,13 +9,13 @@
   "types": "dist/src/index.d.ts",
   "repository": {
     "type": "git",
-    "url": "https://github.com/Second-Gear/controller"
+    "url": "https://github.com/second-gear/controller.git"
   },
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/Second-Gear/controller/issues"
+    "url": "https://github.com/second-gear/controller/issues"
   },
-  "homepage": "https://github.com/Second-Gear/controller#readme",
+  "homepage": "https://github.com/second-gear/controller#readme",
   "scripts": {
     "build": "rm -rf dist && rollup -c rollup.config.ts",
     "gen": "graphql-codegen --config codegen.yml"
@@ -54,7 +54,8 @@
   ],
   "sideEffects": false,
   "publishConfig": {
-    "access": "public"
+    "access": "public",
+    "@second-gear:registry": "https://npm.pkg.github.com"
   },
   "engines": {
     "node": ">=12.0.0"
