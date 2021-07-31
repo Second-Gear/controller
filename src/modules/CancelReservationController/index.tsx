@@ -1,32 +1,16 @@
-import { ApolloError, FetchResult } from '@apollo/client';
 import React from 'react';
 import {
   CancelReservationMutation,
   useCancelReservationMutation,
 } from '../../generated/graphql';
+import { ControllerProps } from '../../types';
 
-interface CancelReservationControllerProps {
-  children: (data: {
-    error?: ApolloError | undefined;
-    loading?: boolean;
-    submit: (
-      id: string
-    ) => Promise<
-      FetchResult<
-        CancelReservationMutation,
-        Record<string, any>,
-        Record<string, any>
-      >
-    >;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const CancelReservationController: React.FC<CancelReservationControllerProps> = ({
-  children,
-}) => {
+export const CancelReservationController: React.FC<
+  ControllerProps<CancelReservationMutation, string>
+> = ({ children }) => {
   const [cancelReservation, { loading }] = useCancelReservationMutation();
 
-  const submit = (id: string) => {
+  const submit = async (id: string) => {
     return cancelReservation({
       variables: {
         id,

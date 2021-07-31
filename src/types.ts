@@ -2,6 +2,8 @@ import {
   FetchMoreQueryOptions,
   FetchMoreOptions,
   ApolloQueryResult,
+  ApolloError,
+  FetchResult,
 } from '@apollo/client';
 import { DocumentNode } from 'graphql';
 import {
@@ -13,6 +15,18 @@ import {
   Review,
   User,
 } from './generated/graphql';
+
+export type ControllerProps<Action, Values, ExtraValue = void> = {
+  children: (data: {
+    data?: Action | null | undefined;
+    error?: ApolloError | undefined;
+    loading?: boolean;
+    submit: (
+      values: Values,
+      extra?: ExtraValue
+    ) => Promise<FetchResult<Action, Record<string, any>, Record<string, any>>>;
+  }) => (JSX.Element & React.ReactNode) | null;
+};
 
 export type ApolloFetchMoreType<TData, TVariables> = (<
   K extends keyof TVariables

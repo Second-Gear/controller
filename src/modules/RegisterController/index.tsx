@@ -1,28 +1,15 @@
 import React from 'react';
-import { RegisterFormProps } from '../../types';
+import { ControllerProps, RegisterFormProps } from '../../types';
 import {
   MeDocument,
   MeQuery,
   RegisterMutation,
   useRegisterMutation,
 } from '../../generated/graphql';
-import { FetchResult } from '@apollo/client';
 
-interface RegisterControllerProps {
-  children: (data: {
-    data?: RegisterMutation | null | undefined;
-    loading?: boolean;
-    submit: (
-      values: RegisterFormProps
-    ) => Promise<
-      FetchResult<RegisterMutation, Record<string, any>, Record<string, any>>
-    >;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const RegisterController: React.FC<RegisterControllerProps> = ({
-  children,
-}) => {
+export const RegisterController: React.FC<
+  ControllerProps<RegisterMutation, RegisterFormProps>
+> = ({ children }) => {
   const [register, { data, loading }] = useRegisterMutation();
 
   const submit = async (values: RegisterFormProps) => {

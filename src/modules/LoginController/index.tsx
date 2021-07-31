@@ -1,5 +1,5 @@
 import React from 'react';
-import { AuthFormProps } from '../../types';
+import { AuthFormProps, ControllerProps } from '../../types';
 import {
   LoginMutation,
   MeDocument,
@@ -7,23 +7,13 @@ import {
   useLoginMutation,
 } from '../../generated/graphql';
 
-interface LoginControllerProps {
-  children: (data: {
-    data?: LoginMutation | null | undefined;
-    loading?: boolean;
-    submit: (
-      values: AuthFormProps
-    ) => Promise<LoginMutation | null | undefined>;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const LoginController: React.FC<LoginControllerProps> = ({
-  children,
-}) => {
+export const LoginController: React.FC<
+  ControllerProps<LoginMutation, AuthFormProps>
+> = ({ children }) => {
   const [login, { data, loading }] = useLoginMutation();
 
   const submit = async (values: AuthFormProps) => {
-    await login({
+    return login({
       variables: { ...values },
       update: (cache, { data }) => {
         cache.writeQuery<MeQuery>({
@@ -35,8 +25,6 @@ export const LoginController: React.FC<LoginControllerProps> = ({
         });
       },
     });
-
-    return data;
   };
 
   return <>{children({ data, loading, submit })}</>;

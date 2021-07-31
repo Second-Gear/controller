@@ -777,20 +777,6 @@ export type SearchListingsQuery = (
   ) }
 );
 
-export type NewHeaderSubscriptionVariables = Exact<{
-  creatorId: Scalars['String'];
-  toId: Scalars['String'];
-}>;
-
-
-export type NewHeaderSubscription = (
-  { __typename?: 'Subscription' }
-  & { newHeader: (
-    { __typename?: 'Header' }
-    & RegularHeadersFragment
-  ) }
-);
-
 export type NewMessageSubscriptionVariables = Exact<{
   headerId: Scalars['String'];
 }>;
@@ -1762,37 +1748,6 @@ export function useSearchListingsLazyQuery(baseOptions?: Apollo.LazyQueryHookOpt
 export type SearchListingsQueryHookResult = ReturnType<typeof useSearchListingsQuery>;
 export type SearchListingsLazyQueryHookResult = ReturnType<typeof useSearchListingsLazyQuery>;
 export type SearchListingsQueryResult = Apollo.QueryResult<SearchListingsQuery, SearchListingsQueryVariables>;
-export const NewHeaderDocument = gql`
-    subscription NewHeader($creatorId: String!, $toId: String!) {
-  newHeader(creatorId: $creatorId, toId: $toId) {
-    ...RegularHeaders
-  }
-}
-    ${RegularHeadersFragmentDoc}`;
-
-/**
- * __useNewHeaderSubscription__
- *
- * To run a query within a React component, call `useNewHeaderSubscription` and pass it any options that fit your needs.
- * When your component renders, `useNewHeaderSubscription` returns an object from Apollo Client that contains loading, error, and data properties
- * you can use to render your UI.
- *
- * @param baseOptions options that will be passed into the subscription, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
- *
- * @example
- * const { data, loading, error } = useNewHeaderSubscription({
- *   variables: {
- *      creatorId: // value for 'creatorId'
- *      toId: // value for 'toId'
- *   },
- * });
- */
-export function useNewHeaderSubscription(baseOptions: Apollo.SubscriptionHookOptions<NewHeaderSubscription, NewHeaderSubscriptionVariables>) {
-        const options = {...defaultOptions, ...baseOptions}
-        return Apollo.useSubscription<NewHeaderSubscription, NewHeaderSubscriptionVariables>(NewHeaderDocument, options);
-      }
-export type NewHeaderSubscriptionHookResult = ReturnType<typeof useNewHeaderSubscription>;
-export type NewHeaderSubscriptionResult = Apollo.SubscriptionResult<NewHeaderSubscription>;
 export const NewMessageDocument = gql`
     subscription NewMessage($headerId: String!) {
   newMessage(headerId: $headerId) {

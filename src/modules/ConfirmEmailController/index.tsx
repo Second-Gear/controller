@@ -5,27 +5,11 @@ import {
   MeQuery,
   useConfirmEmailMutation,
 } from '../../generated/graphql';
-import { FetchResult } from '@apollo/client';
+import { ControllerProps } from '../../types';
 
-interface ConfirmEmailControllerProps {
-  children: (data: {
-    data?: ConfirmEmailMutation | null | undefined;
-    loading?: boolean;
-    submit: (
-      token: string
-    ) => Promise<
-      FetchResult<
-        ConfirmEmailMutation,
-        Record<string, any>,
-        Record<string, any>
-      >
-    >;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const ConfirmEmailController: React.FC<ConfirmEmailControllerProps> = ({
-  children,
-}) => {
+export const ConfirmEmailController: React.FC<
+  ControllerProps<ConfirmEmailMutation, string>
+> = ({ children }) => {
   const [changePassword, { data, loading }] = useConfirmEmailMutation();
 
   const submit = async (token: string) => {

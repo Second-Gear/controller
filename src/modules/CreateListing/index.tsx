@@ -1,30 +1,21 @@
-import { ApolloError, FetchResult } from '@apollo/client';
 import React from 'react';
 import {
   CreateListingMutation,
   useCreateListingMutation,
 } from '../../generated/graphql';
-import { ListingFormProps } from '../../types';
+import { ControllerProps, ListingFormProps } from '../../types';
 
-interface CreateListingControllerProps {
-  children: (data: {
-    error?: ApolloError | undefined;
-    loading?: boolean;
-    submit: (
-      values: ListingFormProps,
-      photos: string[]
-    ) => Promise<FetchResult<CreateListingMutation>>;
-  }) => React.ReactNode;
-}
-
-export const CreateListingController: React.FC<CreateListingControllerProps> = ({
-  children,
-}) => {
+export const CreateListingController: React.FC<
+  ControllerProps<CreateListingMutation, ListingFormProps, string[]>
+> = ({ children }) => {
   const [createListing] = useCreateListingMutation();
 
-  const submit = async (values: ListingFormProps, photos: string[]) => {
+  const submit = async (
+    values: ListingFormProps,
+    photos: string[] | undefined
+  ) => {
     return createListing({
-      variables: { input: { ...values, photos } },
+      variables: { input: { ...values, photos: photos ?? [] } },
     });
   };
 

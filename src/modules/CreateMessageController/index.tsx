@@ -1,33 +1,16 @@
-import { ApolloError, FetchResult } from '@apollo/client';
 import React from 'react';
 import {
   CreateMessageMutation,
   useCreateMessageMutation,
 } from '../../generated/graphql';
-import { MessageFormProps } from '../../types';
+import { ControllerProps, MessageFormProps } from '../../types';
 
-interface CreateMessageControllerProps {
-  children: (data: {
-    error?: ApolloError | undefined;
-    loading?: boolean;
-    submit: (
-      values: MessageFormProps
-    ) => Promise<
-      FetchResult<
-        CreateMessageMutation,
-        Record<string, any>,
-        Record<string, any>
-      >
-    >;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const CreateMessageController: React.FC<CreateMessageControllerProps> = ({
-  children,
-}) => {
+export const CreateMessageController: React.FC<
+  ControllerProps<CreateMessageMutation, MessageFormProps>
+> = ({ children }) => {
   const [createMessage] = useCreateMessageMutation();
 
-  const submit = (values: MessageFormProps) => {
+  const submit = async (values: MessageFormProps) => {
     return createMessage({
       variables: {
         input: {

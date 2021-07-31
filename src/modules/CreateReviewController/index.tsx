@@ -1,39 +1,18 @@
-import {
-  ApolloError,
-  FetchResult,
-  gql,
-  Reference,
-  StoreObject,
-} from '@apollo/client';
+import { gql, Reference, StoreObject } from '@apollo/client';
 import React from 'react';
 import {
   CreateReviewMutation,
   ReviewInput,
   useCreateReviewMutation,
 } from '../../generated/graphql';
+import { ControllerProps } from '../../types';
 
-interface CreateReviewControllerProps {
-  children: (data: {
-    error?: ApolloError | undefined;
-    loading?: boolean;
-    submit: (
-      input: ReviewInput
-    ) => Promise<
-      FetchResult<
-        CreateReviewMutation,
-        Record<string, any>,
-        Record<string, any>
-      >
-    >;
-  }) => (JSX.Element & React.ReactNode) | null;
-}
-
-export const CreateReviewController: React.FC<CreateReviewControllerProps> = ({
-  children,
-}) => {
+export const CreateReviewController: React.FC<
+  ControllerProps<CreateReviewMutation, ReviewInput>
+> = ({ children }) => {
   const [createReview, { loading }] = useCreateReviewMutation();
 
-  const submit = ({
+  const submit = async ({
     accuracy,
     checkIn,
     cleanliness,
