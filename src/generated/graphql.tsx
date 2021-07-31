@@ -409,7 +409,6 @@ export type UserResponse = {
   __typename?: 'UserResponse';
   errors?: Maybe<Array<FieldError>>;
   user?: Maybe<User>;
-  sessionID?: Maybe<Scalars['String']>;
 };
 
 export type ListingDetailsFragment = (
@@ -598,7 +597,6 @@ export type LoginMutation = (
   { __typename?: 'Mutation' }
   & { login: (
     { __typename?: 'UserResponse' }
-    & Pick<UserResponse, 'sessionID'>
     & RegularUserResponseFragment
   ) }
 );
@@ -1233,7 +1231,6 @@ export const LoginDocument = gql`
     mutation Login($email: String!, $password: String!) {
   login(email: $email, password: $password) {
     ...RegularUserResponse
-    sessionID
   }
 }
     ${RegularUserResponseFragmentDoc}`;

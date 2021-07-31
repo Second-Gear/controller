@@ -48,6 +48,8 @@ export interface RegisterFormProps extends AuthFormProps {
 export type ChangePasswordProps = Omit<AuthFormProps, 'email' | 'confirm'>;
 export type ForgotPasswordProps = Omit<AuthFormProps, 'password' | 'confirm'>;
 
+export type ChangePasswordForm = ChangePasswordProps & { token: string };
+
 export interface ListingFormProps {
   title: string;
   description: string;

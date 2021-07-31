@@ -8,7 +8,6 @@ import {
 } from '../../generated/graphql';
 
 interface LoginControllerProps {
-  onSessionId?: (sessionId: string) => void;
   children: (data: {
     data?: LoginMutation | null | undefined;
     loading?: boolean;
@@ -21,9 +20,7 @@ interface LoginControllerProps {
 export const LoginController: React.FC<LoginControllerProps> = ({
   children,
 }) => {
-  const [login, { data, loading }] = useLoginMutation({
-    notifyOnNetworkStatusChange: true,
-  });
+  const [login, { data, loading }] = useLoginMutation();
 
   const submit = async (values: AuthFormProps) => {
     await login({

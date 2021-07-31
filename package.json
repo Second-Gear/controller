@@ -1,12 +1,11 @@
 {
   "name": "@second-gear/controller",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "private": false,
   "author": "Sebastian Darie",
   "description": "Package used for sharing code between app and web in my airbnb monorepo",
   "main": "lib/index.js",
-  "module": "lib/index.esm.js",
-  "types": "lib/index.d.ts",
+  "types": "lib/src/index.d.ts",
   "repository": {
     "type": "git",
     "url": "https://github.com/second-gear/controller.git"
@@ -21,12 +20,11 @@
     "gen": "graphql-codegen --config codegen.yml"
   },
   "peerDependencies": {
-    "@apollo/client": "^3.3.15",
-    "graphql": "^15.5.0",
-    "react": ">=16.8.0 || ^17.0.2"
+    "@apollo/client": "^3.4.1",
+    "graphql": "^15.5.1",
+    "react": "^17.0.2"
   },
   "devDependencies": {
-    "@apollo/client": "^3.3.21",
     "@graphql-codegen/cli": "1.21.4",
     "@graphql-codegen/typescript": "1.22.0",
     "@graphql-codegen/typescript-operations": "1.17.16",
@@ -39,9 +37,7 @@
     "@types/react": "^17.0.3",
     "@types/react-dom": "^17.0.3",
     "@types/rollup-plugin-peer-deps-external": "^2.2.1",
-    "graphql": "^15.5.1",
     "graphql-tag": "^2.12.5",
-    "react": "^17.0.2",
     "rimraf": "^3.0.2",
     "rollup": "^2.55.1",
     "rollup-plugin-filesize": "^9.1.1",

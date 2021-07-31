@@ -1,4 +1,6 @@
 export * from './modules/CancelReservationController';
+export * from './modules/ChangePasswordController';
+export * from './modules/ConfirmEmailController';
 export * from './modules/CreateListing';
 export * from './modules/CreateMessageController';
 export * from './modules/CreateReviewController';
