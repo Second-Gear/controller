@@ -213,6 +213,30 @@ export type Reviews =
     >
   | undefined;
 
+export type ListingReview =
+  | Maybe<
+      ({
+        __typename?: 'Review' | undefined;
+      } & Pick<
+        Review,
+        | 'id'
+        | 'rating'
+        | 'value'
+        | 'cleanliness'
+        | 'accuracy'
+        | 'checkIn'
+        | 'communication'
+        | 'location'
+        | 'review'
+        | 'createdAt'
+      > & {
+          creator: {
+            __typename?: 'User' | undefined;
+          } & Pick<User, 'id' | 'name' | 'photoUrl'>;
+        })
+    >
+| undefined;
+
 export type TripReservation = {
   __typename?: 'Reservation' | undefined;
 } & Pick<Reservation, 'cancelled' | 'completed' | 'paymentIntent'> & {
